@@ -12,6 +12,6 @@ class UriBuilder
   end
 
   def to_path
-    result = @path.join("/")
+    result = "/#{@path.join("/")}"
   end
 end
