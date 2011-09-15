@@ -12,15 +12,20 @@ class UriBuilder
 
   def method_missing(method, *args)
     @path << "#{method}"
-    arg_handler(*args) unless args.empty?
+    puts args
+    return handle_invocation(*args) unless args.empty?
     self
   end
 
-  def arg_handler(*args)
+  def handle_invocation(*args)
     # override this to handle invocations
   end
 
-  def to_path
+  def to_s
     result = "#{@path.join("/")}"
+  end
+
+  def inspect
+    "#<#{self.class} #{self.to_s}>"
   end
 end
