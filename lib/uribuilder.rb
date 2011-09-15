@@ -12,7 +12,6 @@ class UriBuilder
 
   def method_missing(method, *args)
     @path << "#{method}"
-    puts args
     return handle_invocation(*args) unless args.empty?
     self
   end
