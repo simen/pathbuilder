@@ -1,5 +1,5 @@
 class UriBuilder
-  def initialize
+  def initialize(*args)
     @path = []
   end
 
