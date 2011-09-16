@@ -28,7 +28,7 @@ Usage
     PathBulder.new[5].user_timeline
       => "5/user_timeline"
     
-This gem is intended as a building block for restful api-adapters. Typically you could subclass it and implement a get and post method so that you could write
+This gem is intended as a building block for restful api-adapters. Typically you could subclass it and implement a get and post method so that you could write something like:
 
     client = YourIncredibleClient.new
     client.users[5].friends[9182].get
