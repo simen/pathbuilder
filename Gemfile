@@ -1,5 +1,4 @@
-gem "jeweler"
+source "http://rubygems.org"
 
-group :development, :test do
-  gem "rspec"
-end
+# Specify your gem's dependencies in pathbuilder.gemspec
+gemspec
