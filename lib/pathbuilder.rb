@@ -1,4 +1,4 @@
-class UriBuilder
+class PathBuilder
   def initialize(*args)
     @path = []
   end

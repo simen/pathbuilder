@@ -5,10 +5,10 @@ require 'rake/rdoctask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = 'uribuilder'
+    gem.name = 'pathbuilder'
     gem.summary = gem.description = %Q{A helper for building restful urls in a methodic way}
     gem.email = "simen@bengler.no"
-    gem.homepage = "http://github.com/simen/uribuilder"
+    gem.homepage = "http://github.com/simen/pathbuilder"
     gem.authors = ["Simen Svale Skogsrud"]
     gem.has_rdoc = true
     gem.require_paths = ["lib"]

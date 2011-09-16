@@ -1,1 +1,1 @@
-require File.dirname(__FILE__)+'/../lib/uribuilder.rb'
+require File.dirname(__FILE__)+'/../lib/pathbuilder.rb'

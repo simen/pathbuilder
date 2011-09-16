@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UriBuilder do
+describe PathBuilder do
   it "returns blank for blank paths" do
     subject.to_s.should eq('')
   end
@@ -27,7 +27,7 @@ describe UriBuilder do
   end
 
   it "temporarily pushes invocation methods and parameters to the path and then restores the path" do
-    class InnerPathCheck < UriBuilder
+    class InnerPathCheck < PathBuilder
       def handle_invocation(*args)
         @inner_path = self.to_s
       end
@@ -39,7 +39,7 @@ describe UriBuilder do
   end
 
   it "doesn't push hashes to the path on invocation, but passes them to the invocation handler" do
-    class HashHandlerCheck < UriBuilder
+    class HashHandlerCheck < PathBuilder
       def handle_invocation(*args)
         @args = args
         @url = self.to_s

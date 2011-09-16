@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "uribuilder"
+  s.name = "pathbuilder"
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
   s.files = [
     "README.markdown",
     "VERSION",
-    "lib/uribuilder.rb"
+    "lib/pathbuilder.rb"
   ]
-  s.homepage = "http://github.com/simen/uribuilder"
+  s.homepage = "http://github.com/simen/pathbuilder"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
   s.summary = "A helper for building restful urls in a methodic way"
