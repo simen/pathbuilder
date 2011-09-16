@@ -11,8 +11,19 @@ class UriBuilder
   end
 
   def method_missing(method, *args)
+    # Preserve path between separate invocations
+    prior_path = @path.dup
     @path << "#{method}"
-    return handle_invocation(*args) unless args.empty?
+    unless args.empty?
+      if args.length == 1 && args.first.respond_to?(:keys) # is_a?(Hash)
+        result = handle_invocation(*args)
+      else
+        @path += args
+        result = handle_invocation
+      end
+      @path = prior_path
+      return result
+    end
     self
   end
 
