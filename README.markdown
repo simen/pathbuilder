@@ -1,7 +1,8 @@
 Pathbuilder
 ===========
 
-A simple helper to build url-paths (think restful) in a manner that looks like a method call.
+A simple helper to build url-paths (think restful) in a manner that looks like a method call. This gem is intended as 
+a component in rpc-style http client libraries.
 
     PathBuilder.new.users[5].deactivate.to_s
       => "users/5/deactivate"
@@ -22,25 +23,21 @@ Or if you use the awesomeness that is bundler, you stick this in your Gemfile:
 Usage
 =====
 
-    PathBuilder.new.users.to_s
-      => "users"
+    PathBuilder.new.users.path
+      => "/users"
 
-    PathBulder.new[5].user_timeline
-      => "5/user_timeline"
-    
-This gem is intended as a building block for restful api-adapters. Typically you could subclass it and implement a get and post method so that you could write something like:
+    PathBulder.new.users[5]
+      => "/users/5"
 
-    client = YourIncredibleClient.new
-    client.users[5].friends[9182].get
+    PathBulder.new.geopoints.closest(10.0, 51.2)
+      => "/geopoints/closest/10.0/51.2"
 
-Additionally you can implement the method handle_invocation so that the programmer may "invoke" the url like a method
+    PathBuilder.new[5].user_timeline.path
+      => "/5/user_timeline"
 
-    class VerySpecialPathBuilder < PathBuilder
-      def handle_invocation(*args)
-        [@path] + args
-      end 
-    end
-
-    VerySpecialPathBuilder.new.users[523].updates(:body => "A new update")
-      => [users/523/updates, {:body => "A new update"}]
+    p = PathBuilder.new.identities(:nick => "sigve")
+    p.path
+      => "/identities"
+    p.params
+      => {:nick => "sigve"} 
     

@@ -1,41 +1,28 @@
 class PathBuilder
+  attr_reader :params
+
   def initialize(*args)
     @path = []
+    @params = {}
   end
 
   def [](*args)
-    args.each do |arg|
-      @path << arg
-    end
+    @path += args
     self
   end
 
   def method_missing(method, *args)
-    # Preserve path between separate invocations
-    prior_path = @path.dup
-    @path << "#{method}"
-    unless args.empty?
-      if args.length == 1 && args.first.respond_to?(:keys) # is_a?(Hash)
-        result = handle_invocation(*args)
-      else
-        @path += args
-        result = handle_invocation
-      end
-      @path = prior_path
-      return result
-    end
+    @path << method
+    args.each { |arg| arg.is_a?(Hash) ? @params.merge!(arg) : @path << arg }
     self
   end
 
-  def handle_invocation(*args)
-    # override this to handle invocations
-  end
-
   def to_s
-    result = "#{@path.join("/")}"
+    "/#{@path.join("/")}"
   end
+  alias :path :to_s
 
   def inspect
-    "#<#{self.class} #{self.to_s}>"
+    "#<#{self.class} @path=\"#{self.to_s}\" @params=#{@params.inspect}>"
   end
 end
